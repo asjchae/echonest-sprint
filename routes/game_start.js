@@ -6,7 +6,17 @@ var echo = echojs({
 
 
 exports.index = function(req, res){
-	echo('song/search').get({style: 'country', song_min_hotttnesss: .5, results: 20}, function (err, json) {
+	echo('song/search').get({style: 'pop'}, function (err, json) { // song_min_hotttnesss: .8
 		res.send(json.response);
 	});
 };
+
+// All the genres we will want:
+// country
+// electronic
+// hip hop
+// pop
+// r&b
+// rap
+// rock
+// show tunes

@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    //- label.control-label(for='inputUsername') Username
+    //- input.input-small(type="text",id="inputUsername", placeholder="username")
+    //- label.control-label(for='inputPassword') Password
+    //- input.input-small(type="password", id='inputPassword', placeholder="password")
+    //- a.btn.btn-info(id='login') Login
+    div.span4(id="loginjade")
+      form.form-horizontal
+        div.group-control
+          label.control-label(for='inputUsername') Username
+          div.controls
+            input.input-small(type="text",id="inputUsername", placeholder="username")
+        div.control-group
+          label.control-label(for='inputPassword') Password
+          div.controls
+            input.input-small(type="password", id='inputPassword', placeholder="password")
+        
+        div.control-group
+          div.controls
+            a.btn.btn-info(id='login') Login

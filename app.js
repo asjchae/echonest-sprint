@@ -7,7 +7,9 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , echojs = require('echojs')
+  , echotest = require('./routes/echotest');
 
 var app = express();
 
@@ -29,12 +31,17 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+// GET requests
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/login', routes.login);
 app.get('/gameexplorer', routes.gameexplorer);
 app.get('/gameview', routes.gameview);
 
+// POST requests
+
+// Tests
+app.get('/echotest', echcotest.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

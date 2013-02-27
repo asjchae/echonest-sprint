@@ -12,6 +12,9 @@ var express = require('express')
   , echotest = require('./routes/echotest');
 
 var app = express();
+var echo = echojs({
+  key: "ZGVDBBCDA3UZA5GQY"
+});
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);

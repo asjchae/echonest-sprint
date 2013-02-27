@@ -39,7 +39,7 @@ app.get('/gameexplorer', routes.gameexplorer);
 app.get('/gameview', routes.gameview);
 
 // POST requests
-
+app.post('/signin', routes.signin)
 // Tests
 app.get('/echotest', echotest.index);
 

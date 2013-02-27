@@ -9,7 +9,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , echojs = require('echojs')
-  , echotest = require('./routes/echotest');
+  , gamestart = require('./routes/game_start');
 
 var app = express();
 
@@ -38,10 +38,10 @@ app.get('/login', routes.login);
 app.get('/gameexplorer', routes.gameexplorer);
 app.get('/gameview', routes.gameview);
 
+app.get('/gamestart', gamestart.index);
+
 // POST requests
 app.post('/signin', routes.signin)
-// Tests
-app.get('/echotest', echotest.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

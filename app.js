@@ -44,7 +44,7 @@ app.get('/gameview', routes.gameview);
 // POST requests
 
 // Tests
-app.get('/echotest', echcotest.index);
+app.get('/echotest', echotest.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

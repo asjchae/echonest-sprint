@@ -6,8 +6,20 @@ var echo = echojs({
 
 
 exports.index = function(req, res){
-	echo('song/search').get({style: 'pop'}, function (err, json) { // song_min_hotttnesss: .8
-		res.send(json.response);
+	echo('song/search').get({style: 'pop', results: 100}, function (err, json) { //
+		var songlist = [];
+		var dups = [];
+		for (var i=0; i<json.response.songs.length; i++) {
+			var hash = json.response.songs[i].artist_name + '|' + json.response.songs[i].title;
+			console.log(hash + ' ' + i)
+			if (dups.indexOf(hash) == -1) {
+				dups.push(hash);
+				songlist.push(json.response.songs[i]);
+			} else {
+				continue;
+			};
+		}
+		res.send(songlist);
 	});
 };
 

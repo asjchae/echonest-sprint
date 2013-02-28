@@ -29,8 +29,13 @@ exports.gameview = function(req, res){
 //test route for making views
 exports.signin = function(req, res){
     console.log(req.body)
-    if (req.body.inputUsername == "fail"){
+    console.log(req.body.inputUsername)
+    if (req.body.inputUsername == 'fail'){
+        console.log("got here")
+
         res.send("Password failed! Please try again")
     }
-        res.render('gameview', { title: 'Express' });
+    else{
+        res.redirect('gameview');
+    }
 };

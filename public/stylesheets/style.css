@@ -6,3 +6,43 @@ body {
 a {
   color: #00B7FF;
 }
+
+/* Set floating dom-heading margins to 0 */
+[class*="dom-heading"] {
+  margin: 0;
+}
+.container-fluid {
+  padding: 0px 20px 0px 50px;
+  margin-top: 100px;
+  height: 440px;
+}
+.container-fluid .row-fluid .span4 {
+  height: 200px;
+}
+.container-fluid .row-fluid .span3 {
+  height: 200px;
+}
+.container-fluid .row-fluid .span3 div {
+  background: rgba(30, 199, 196, 0.431373);
+  border-radius: 20px;
+  height: 100px;
+}
+.container-fluid .row-fluid .span3 div .dom-heading {
+  font-family:"Arial";
+  padding: 20px 0px 0px 0px;
+}
+.container-fluid .row-fluid .span2 div.div-1 {
+  background: rgba(59, 109, 139, 0.498039);
+  border-radius: 5px;
+  height: 120px;
+}
+.container-fluid .row-fluid .span2 .div-1 .dom-heading {
+  font-family:"Arial";
+  text-align: center;
+}
+.container-fluid .row-fluid .span2 .div-1 .btn {
+  margin: 0px 0px 0px 20px;
+}
+.container-fluid .row-fluid .span2 .div-1 .btn.btn-1 {
+  height: 30px;
+}

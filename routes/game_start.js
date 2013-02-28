@@ -7,14 +7,20 @@ var echo = echojs({
 });
 
 
+// WHY
+// Maybe split it into another function
 
 exports.index = function(req, res){
 	getSongs(function(songlist) {
 		for (var i=0; i<songlist.length; i++) {
-			SongCard.findOne({title: songlist[i].title, artist: songlist[i].artist_name}).exec(function (err, response) {
+			console.log(songlist[i].title);
+			console.log("break");
+			SongCard.findOne({title: songlist[i].title}).exec(function (err, response) {
+				console.log(response + "meow");
 				if (err) {
 					console.log("Error finding existing song card", err);
 				} else if (!response) {
+					console.log("no response");
 					var newSongCard = new SongCard({title: songlist[i].title, artist: songlist[i].artist_name});
 					newSongCard.save(function(err) {
 						if (err) {
@@ -29,7 +35,7 @@ exports.index = function(req, res){
 };
 
 exports.songcards = function(req, res) {
-	var allSongCards = SongCard.find({}).sort('title').exec(function(err, response) {
+	var allSongCards = SongCard.find({}).exec(function(err, response) {
 		if (err) {
 			console.log("Error finding all song cards", err);
 		} else {

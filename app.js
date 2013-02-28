@@ -38,6 +38,7 @@ app.get('/login', routes.login);
 app.get('/gameexplorer', routes.gameexplorer);
 app.get('/gameview', routes.gameview);
 
+app.get('/songcards', gamestart.songcards);
 app.get('/gamestart', gamestart.index);
 
 // POST requests

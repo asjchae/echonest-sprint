@@ -9,7 +9,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , echojs = require('echojs')
-  , gamestart = require('./routes/game_start')
+  , cards= require('./routes/cards')
   , mongoose = require('mongoose')
   , admin = require('./routes/admin');
 
@@ -42,10 +42,13 @@ app.get('/gameexplorer', routes.gameexplorer);
 app.get('/gameview', routes.gameview);
 
 
-app.get('/gamestart', gamestart.index);
+app.get('/getsongcards', cards.songcards);
+app.get('/getthemecards', cards.themecards)
 
-app.get('/songcards/delete', admin.delete);
+app.get('/songcards/delete', admin.deletesongcards);
 app.get('/songcards', admin.songcards);
+app.get('/themecards/delete', admin.deletethemecards);
+app.get('/themecards', admin.themecards);
 
 // POST requests
 app.post('/signin', routes.signin)

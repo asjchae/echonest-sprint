@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var themecards_schema = mongoose.Schema({
-	theme: String
+	theme: String,
+	inDeck: Boolean
 });
 
 var themecard = mongoose.model('themecard', themecards_schema);

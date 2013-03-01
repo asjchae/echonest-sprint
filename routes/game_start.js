@@ -2,14 +2,15 @@ var echojs = require('echojs')
 	, SongCard = require('../models/songcards_schema')
 	, mongoose = require('mongoose');
 
+
+// Echonest API Key
+
 var echo = echojs({
   key: "ZGVDBBCDA3UZA5GQY"
 });
 
 
-// WHY
-// Maybe split it into another function
-
+// Gets songs from Echonest.
 exports.index = function(req, res){
 	getSongs(function(songlist) {
 		for (var i=0; i<songlist.length; i++) {
@@ -19,37 +20,6 @@ exports.index = function(req, res){
 	});
 	res.redirect('/songcards');
 };
-
-function songcardMaker(song, callback) {
-	var titulo = song.title.toString();
-	var artista = song.artist_name.toString();
-	SongCard.findOne({title: titulo}).exec(function (err, response) {
-		if (err) {
-			console.log("Error finding existing song card", err);
-		} else if (!response) {
-			var newSongCard = new SongCard({title: titulo, artist: artista});
-			newSongCard.save(function(err) {
-				if (err) {
-					console.log("Error saving new song card", err);
-				}
-				console.log("saved new song");
-				console.log(newSongCard);
-			});
-		}
-		callback(); // Do I need this?
-	});
-}
-
-exports.songcards = function(req, res) {
-	var allSongCards = SongCard.find({}).exec(function(err, response) {
-		if (err) {
-			console.log("Error finding all song cards", err);
-		} else {
-			res.send(response);
-		}
-	});
-};
-
 
 // This search functionality accounts for duplicates but not when there are slight variations in title/artist name.
 // Genre ideas: pop, country, electronic, hip hop, r&b, rap, rock, show tunes
@@ -73,3 +43,26 @@ function getSongs(callback) {
 		callback(songlist);
 	});
 };
+
+
+// Saves to the SongCard database.
+
+function songcardMaker(song, callback) {
+	var titulo = song.title.toString();
+	var artista = song.artist_name.toString();
+	SongCard.findOne({title: titulo}).exec(function (err, response) {
+		if (err) {
+			console.log("Error finding existing song card", err);
+		} else if (!response) {
+			var newSongCard = new SongCard({title: titulo, artist: artista});
+			newSongCard.save(function(err) {
+				if (err) {
+					console.log("Error saving new song card", err);
+				}
+				console.log("saved new song");
+				console.log(newSongCard);
+			});
+		}
+		callback(); // Do I need this?
+	});
+}

@@ -41,10 +41,11 @@ app.get('/login', routes.login);
 app.get('/gameexplorer', routes.gameexplorer);
 app.get('/gameview', routes.gameview);
 
-app.get('/songcards', gamestart.songcards);
+
 app.get('/gamestart', gamestart.index);
 
 app.get('/songcards/delete', admin.delete);
+app.get('/songcards', admin.songcards);
 
 // POST requests
 app.post('/signin', routes.signin)

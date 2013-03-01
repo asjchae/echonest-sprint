@@ -9,7 +9,9 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , echojs = require('echojs')
-  , gamestart = require('./routes/game_start');
+  , gamestart = require('./routes/game_start')
+  , mongoose = require('mongoose')
+  , admin = require('./routes/admin');
 
 var app = express();
 
@@ -25,6 +27,7 @@ app.configure(function(){
   app.use(express.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
+  mongoose.connect(process.env.MONGOLAB_URI || 'localhost/echonest-sprint');
 });
 
 app.configure('development', function(){
@@ -40,6 +43,8 @@ app.get('/gameview', routes.gameview);
 
 app.get('/songcards', gamestart.songcards);
 app.get('/gamestart', gamestart.index);
+
+app.get('/songcards/delete', admin.delete);
 
 // POST requests
 app.post('/signin', routes.signin)

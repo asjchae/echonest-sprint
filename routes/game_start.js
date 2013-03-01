@@ -13,26 +13,32 @@ var echo = echojs({
 exports.index = function(req, res){
 	getSongs(function(songlist) {
 		for (var i=0; i<songlist.length; i++) {
-			console.log(songlist[i].title);
-			console.log("break");
-			SongCard.findOne({title: songlist[i].title}).exec(function (err, response) {
-				console.log(response + "meow");
-				if (err) {
-					console.log("Error finding existing song card", err);
-				} else if (!response) {
-					console.log("no response");
-					var newSongCard = new SongCard({title: songlist[i].title, artist: songlist[i].artist_name});
-					newSongCard.save(function(err) {
-						if (err) {
-							console.log("Error saving new song card", err);
-						}
-					});
-				}
+			songcardMaker(songlist[i], function() { // Do I need the callback?
 			});
 		}
-		res.redirect('/songcards');
 	});
+	res.redirect('/songcards');
 };
+
+function songcardMaker(song, callback) {
+	var titulo = song.title.toString();
+	var artista = song.artist_name.toString();
+	SongCard.findOne({title: titulo}).exec(function (err, response) {
+		if (err) {
+			console.log("Error finding existing song card", err);
+		} else if (!response) {
+			var newSongCard = new SongCard({title: titulo, artist: artista});
+			newSongCard.save(function(err) {
+				if (err) {
+					console.log("Error saving new song card", err);
+				}
+				console.log("saved new song");
+				console.log(newSongCard);
+			});
+		}
+		callback(); // Do I need this?
+	});
+}
 
 exports.songcards = function(req, res) {
 	var allSongCards = SongCard.find({}).exec(function(err, response) {
@@ -54,6 +60,7 @@ function getSongs(callback) {
 	echo('song/search').get({results: 100, sort: 'song_hotttnesss-desc'}, function (err, json) { // style: 'pop'
 		var songlist = [];
 		var dups = [];
+		console.log(json);
 		for (var i=0; i<json.response.songs.length; i++) {
 			var hash = json.response.songs[i].artist_name + '|' + json.response.songs[i].title;
 			if (dups.indexOf(hash) == -1) {

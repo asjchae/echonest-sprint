@@ -1,1 +1,0 @@
-var themes = ['Happy', 'Sad', 'Childhood', 'Party', 'Day on the beach', 'Workout', 'Study', 'Sleep', 'Angry', 'Helen Keller'];

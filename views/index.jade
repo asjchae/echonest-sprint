@@ -1,5 +1,26 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    
+  script(src='/javascripts/apitest.js')  
+  #api
+    img#art(src='', height='200', width='200', style='float: left; margin-right: 20px;')
+    div
+      div
+        b Track: 
+        span#track
+      div
+        b Album: 
+        span#album
+      div
+        b Artist: 
+        span#artist
+      div
+        b Position: 
+        span(style='display: inline-block; width: 200px; border: 1px solid black;')
+          span#position(style='display: inline-block; background-color: #666;')  
+      div
+        button#previous <<
+        button#play |>
+        button#pause ||
+        button#next >>

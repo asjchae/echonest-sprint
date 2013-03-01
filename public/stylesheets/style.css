@@ -1,15 +1,11 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-
 /* Set floating dom-heading margins to 0 */
 [class*="dom-heading"] {
   margin: 0;
+}
+.dom-heading1 {
+  font-family:"Arial";
+  padding: 20px 0px 0px 0px;
+  text-align: center;
 }
 .container-fluid {
   padding: 0px 20px 0px 50px;
@@ -34,15 +30,18 @@ a {
 .container-fluid .row-fluid .span2 div.div-1 {
   background: rgba(59, 109, 139, 0.498039);
   border-radius: 5px;
-  height: 120px;
+  height: 160px;
 }
 .container-fluid .row-fluid .span2 .div-1 .dom-heading {
   font-family:"Arial";
   text-align: center;
 }
-.container-fluid .row-fluid .span2 .div-1 .btn {
-  margin: 0px 0px 0px 20px;
-}
 .container-fluid .row-fluid .span2 .div-1 .btn.btn-1 {
+  margin: 0px 0px 0px 35px;
+}
+.container-fluid .row-fluid .span2 .div-1 .btn.btn-2 {
   height: 30px;
+}
+.container-fluid .row-fluid .span2 .div-1 .btn.btn-3 {
+  margin: 2px 0px 0px 35px;
 }

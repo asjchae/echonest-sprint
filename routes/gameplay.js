@@ -6,11 +6,6 @@ var echojs = require('echojs')
 
 // NOTE: don't delete card until after dealer chooses so we know who won
 
-// app.get('/roundfinish', gameplay.roundfinish);  // everyone sees the results
-
-// app.post('/start', gameplay.start);
-// app.post('/playersubmit', gameplay.playersubmit);
-// app.post('/dealersubmit', gameplay.dealersubmit);
 
 // Starts a new round.
 exports.newround = function(req, res) {
@@ -37,10 +32,13 @@ exports.playerwait = function(req, res) {
 
 };
 
-
+// Everyone sees the results.
 exports.roundfinish = function(req, res) {
 
 };
+
+
+// THE POSTS
 
 exports.start = function(req, res) {
 

@@ -11,7 +11,8 @@ var express = require('express')
   , echojs = require('echojs')
   , cards= require('./routes/cards')
   , mongoose = require('mongoose')
-  , admin = require('./routes/admin');
+  , admin = require('./routes/admin')
+  , gameplay = require('./routes/gameplay');
 
 var app = express();
 
@@ -49,6 +50,24 @@ app.get('/songcards/delete', admin.deletesongcards);
 app.get('/songcards', admin.songcards);
 app.get('/themecards/delete', admin.deletethemecards);
 app.get('/themecards', admin.themecards);
+
+// Game Play
+
+app.get('/newround', gameplay.newround); // start a new round
+app.get('/dealerscreen', gameplay.dealerscreen); // the screen the dealer sees to pick
+app.get('/dealerwait', gameplay.dealerwait); // waiting screen for the dealer while players pick
+app.get('/playerscreen', gameplay.playerscreen); // players can choose
+app.get('/playerwait', gameplay.playerwait); // players wait for the dealer to choose
+app.get('/roundfinish', gameplay.roundfinish);  // everyone sees the results
+
+// note: don't delete card until after dealer chooses so we know who won
+
+app.post('/start', gameplay.start);
+app.post('/playersubmit', gameplay.playersubmit);
+app.post('/dealersubmit', gameplay.dealersubmit);
+
+
+
 
 // POST requests
 app.post('/signin', routes.signin)

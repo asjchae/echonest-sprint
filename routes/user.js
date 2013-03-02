@@ -1,8 +1,14 @@
+var User = require('../models/user_schema')
+	, mongoose = require('mongoose');
 
-/*
- * GET users listing.
- */
+// User schema contains:
 
-exports.list = function(req, res){
-  res.send("respond with a resource");
-};
+	// username: String,
+	// password: String,
+	// score: Number,
+	// card_hand: [{type: mongoose.Schema.Types.ObjectId, ref: 'songcard'}],
+	// is_dealer: Boolean
+
+exports.newuser = function(req, res) {
+	
+}

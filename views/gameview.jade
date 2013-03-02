@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    script(src='/javascripts/gameview.js')  
     .container-fluid
       .row-fluid
         span.span4
@@ -17,6 +18,6 @@ block content
                 | #{song.artist}
                 div
                   br
-              button.btn.btn-1.btn-2.playbutton Play
+              button.btn.btn-1.btn-2.playbutton(id=song.name) Play
               button.btn.btn-2.btn-3 Submit
           

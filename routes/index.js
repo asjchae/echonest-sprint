@@ -55,13 +55,13 @@ exports.signin = function(req, res){
         
     //   });
     // });
-    console.log(req.body)
-    console.log(req.body.inputUsername)
-    if (req.body.inputUsername == 'fail'){
-      console.log("got here")
-      res.send("Password failed! Please try again")
+    console.log(req.body);
+    console.log(req.body.inputUsername);
+    if (req.body.inputUsername == 'fail') {
+      console.log("got here");
+      res.send("Password failed! Please try again");
     }
-    else{
+    else {
       res.render('gameview', {title:'Express',theme:"happy", songs:[{name:"song1", artist:"artist1"},{name:"song2", artist:"artist2"},{name:"song3", artist:"artist3"}, {name:"song4", artist:"artist4"}, {name:"song5", artist:"artist5"}, {name:"song6", artist:"artist6"} ]});
     }            
     

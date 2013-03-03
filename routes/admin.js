@@ -1,5 +1,6 @@
 var SongCard = require('../models/songcards_schema')
 	, ThemeCard = require('../models/themecards_schema')
+	, User = require('../models/user_schema')
 	, mongoose = require('mongoose');
 
 // Lists all song cards.
@@ -36,3 +37,14 @@ exports.deletethemecards = function(req, res) {
 	var deleteAll = ThemeCard.find({}).remove();
 	res.redirect('themecards');
 }
+
+// Lists all users.
+exports.allusers = function(req, res) {
+	var allUsers = User.find({}).sort('username').exec(function(err, response) {
+		if (err) {
+			console.log("Error finding all users", err);
+		} else {
+			res.send(response);
+		}
+	});
+};

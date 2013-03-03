@@ -27,7 +27,7 @@ exports.dealerwait = function(req, res) {
 exports.playerscreen = function(req, res) {
 	// console.log(req.session.user);
 	var songs = [];
-	for (i=0; i<6; i++) {
+	for (i=0; i<6; i++) { // YOU'RE GONNA WANT A CALLBACK FOR THIS.
 		SongCard.findOne({}).exec(function (err, response) {
 			if (err) {
 				console.log("Error getting song card", err);

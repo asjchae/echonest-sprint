@@ -34,6 +34,6 @@ exports.signin = function(req, res) {
 
 function login(req, res, user) {
 	req.session.user = req.body.inputUsername;
-	return res.redirect('/gameview');
+	return res.redirect('/play');
 };
  

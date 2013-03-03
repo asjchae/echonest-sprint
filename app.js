@@ -39,7 +39,7 @@ app.configure('development', function(){
 
 app.get('/', user.login);
 app.get('/gameexplorer', routes.gameexplorer);
-app.get('/gameview', routes.gameview);
+app.get('/play', gameplay.playerscreen);
 
 
 app.get('/getsongcards', cards.songcards);
@@ -56,7 +56,6 @@ app.get('/users', admin.allusers);
 // app.get('/newround', gameplay.newround); // start a new round
 // app.get('/dealerscreen', gameplay.dealerscreen); // the screen the dealer sees to pick
 // app.get('/dealerwait', gameplay.dealerwait); // waiting screen for the dealer while players pick
-// app.get('/playerscreen', gameplay.playerscreen); // players can choose
 // app.get('/playerwait', gameplay.playerwait); // players wait for the dealer to choose
 // app.get('/roundfinish', gameplay.roundfinish);  // everyone sees the results
 

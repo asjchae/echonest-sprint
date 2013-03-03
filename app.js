@@ -36,9 +36,8 @@ app.configure('development', function(){
 });
 
 // GET requests
-app.get('/', routes.index);
-// app.get('/users', user.list);
-app.get('/login', routes.login);
+
+app.get('/', user.login);
 app.get('/gameexplorer', routes.gameexplorer);
 app.get('/gameview', routes.gameview);
 
@@ -50,6 +49,7 @@ app.get('/songcards/delete', admin.deletesongcards);
 app.get('/songcards', admin.songcards);
 app.get('/themecards/delete', admin.deletethemecards);
 app.get('/themecards', admin.themecards);
+app.get('/users', admin.allusers);
 
 // Game Play
 
@@ -67,10 +67,8 @@ app.get('/themecards', admin.themecards);
 // app.post('/dealersubmit', gameplay.dealersubmit);
 
 
-
-
 // POST requests
-app.post('/signin', routes.signin)
+app.post('/signin', user.signin)
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

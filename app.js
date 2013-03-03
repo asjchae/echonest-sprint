@@ -36,10 +36,8 @@ app.configure('development', function(){
 });
 
 // GET requests
-app.get('/', routes.index);
 
-// app.get('/users', user.list);
-app.get('/login', user.login);
+app.get('/', user.login);
 app.get('/gameexplorer', routes.gameexplorer);
 app.get('/gameview', routes.gameview);
 
@@ -67,8 +65,6 @@ app.get('/users', admin.allusers);
 // app.post('/start', gameplay.start);
 // app.post('/playersubmit', gameplay.playersubmit);
 // app.post('/dealersubmit', gameplay.dealersubmit);
-
-
 
 
 // POST requests

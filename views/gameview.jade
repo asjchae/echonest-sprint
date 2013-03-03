@@ -2,7 +2,7 @@ extends layout
 
 block content
     script(src='/javascripts/gameview.js')
-    script(src='https://raw.github.com/rdio/jquery.rdio.js/master/jquery.rdio.min.js')
+    script(src='https://raw.github.com/rdio/jquery.rdio.js/master/jquery.rdio.js')
   
     .container-fluid
       .row-fluid
@@ -20,6 +20,6 @@ block content
                 | #{song.artist}
                 div
                   br
-              button.btn.btn-1.btn-2.playbutton(id='t21400296') Play
+              button.btn.btn-1.btn-2.playbutton(id=song.id) Play
               button.btn.btn-2.btn-3 Submit
           

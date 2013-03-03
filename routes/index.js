@@ -62,7 +62,13 @@ exports.signin = function(req, res){
       res.send("Password failed! Please try again");
     }
     else {
-      res.render('gameview', {title:'Express',theme:"happy", songs:[{name:"song1", artist:"artist1"},{name:"song2", artist:"artist2"},{name:"song3", artist:"artist3"}, {name:"song4", artist:"artist4"}, {name:"song5", artist:"artist5"}, {name:"song6", artist:"artist6"} ]});
+      res.render('gameview', {title:'Express',theme:"happy", songs:[
+        {name:"Beauty And A Beat", artist:"Justin Bieber", id:"t17846091"},
+        {name:"Call Me Maybe", artist:"Carly Rae Jepsen", id:"t15832423"},
+        {name:"Ho Hey", artist:"The Lumineers", id:"t15999172  "},
+        {name:"It's Time", artist:"Imagine Dragons", id:"t15652628"},
+        {name:"Lights", artist:"Ellie Goulding", id:"t5482177"},
+        {name:"Little Talks", artist:"Of Monsters and Men", id:"t16498218"} ]});
     }            
     
 };

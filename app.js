@@ -37,7 +37,6 @@ app.configure('development', function(){
 // GET requests
 
 app.get('/', user.login);
-app.get('/gameexplorer', routes.gameexplorer);
 app.get('/play', gameplay.playerscreen);
 
 

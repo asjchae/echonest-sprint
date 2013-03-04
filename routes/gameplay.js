@@ -60,15 +60,6 @@ exports.playerscreen = function(req, res) {
 			});
 		});
 	});
-
-
-    // res.render('gameview', {title:'Express',theme:"happy", songs:[
-    //     {name:"Beauty And A Beat", artist:"Justin Bieber", id:"t17846091"},
-    //     {name:"Call Me Maybe", artist:"Carly Rae Jepsen", id:"t15832423"},
-    //     {name:"Ho Hey", artist:"The Lumineers", id:"t15999172  "},
-    //     {name:"It's Time", artist:"Imagine Dragons", id:"t15652628"},
-    //     {name:"Lights", artist:"Ellie Goulding", id:"t5482177"},
-    //     {name:"Little Talks", artist:"Of Monsters and Men", id:"t16498218"} ]});
 };
 
 function getHand(songs, callback) {
@@ -87,6 +78,16 @@ function getHand(songs, callback) {
 		}
 	});
 };
+
+// PSEUDO-CODE
+
+/*
+Yo, I want to get a card where inDeck = true. Are there cards?
+Yes: Get a card.
+No: Look at all the SongCards and find the one with the lowest hotttnesss and do a search based on that.
+
+
+*/
 
 
 // Screen that players see while waiting for the dealer to choose; they can see all the submitted cards.

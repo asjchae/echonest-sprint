@@ -2,7 +2,8 @@ var echojs = require('echojs')
 	, SongCard = require('../models/songcards_schema')
 	, ThemeCard = require('../models/themecards_schema')
 	, mongoose = require('mongoose')
-	, async = require('async');
+	, async = require('async')
+	, User = require('../models/user_schema');
 
 
 // NOTE: don't delete card until after dealer chooses so we know who won
@@ -25,20 +26,42 @@ exports.dealerwait = function(req, res) {
 
 // Screen where players can choose which card to submit.
 exports.playerscreen = function(req, res) {
-	// console.log(req.session.user);
 	var songs = [];
-	for (i=0; i<6; i++) { // YOU'RE GONNA WANT A CALLBACK FOR THIS.
-		SongCard.findOne({}).exec(function (err, response) {
-			if (err) {
-				console.log("Error getting song card", err);
-			} else {
-				console.log(response);
-				songs.push(response);
-			}
+	getHand(songs, function(songs) {
+		getHand(songs, function(songs) {
+			getHand(songs, function(songs) {
+				getHand(songs, function(songs) {
+					getHand(songs, function(songs) {
+						getHand(songs, function(songs) {
+							User.findOne({username: req.session.user}).exec(function (err, response) {
+								if (err) {
+									console.log("Error", err);
+								} else {
+									response.set({card_hand: songs});
+									response.save(function (err) {
+										if (err) {
+											console.log("Error saving hand", err);
+										} else {
+											User.findOne({username: response.username}).populate('card_hand').exec(function (err, response) {
+												if (err) {
+													console.log("Error", err);
+												} else {
+													var hand = response.card_hand;
+													res.render('gameview', {title: 'Express', theme: "Happy", songs: hand});
+												}
+											});
+										}
+									});
+								}
+							});
+						});
+					});
+				});
+			});
 		});
-	}
+	});
 
-	console.log(songs);
+
     // res.render('gameview', {title:'Express',theme:"happy", songs:[
     //     {name:"Beauty And A Beat", artist:"Justin Bieber", id:"t17846091"},
     //     {name:"Call Me Maybe", artist:"Carly Rae Jepsen", id:"t15832423"},
@@ -47,6 +70,24 @@ exports.playerscreen = function(req, res) {
     //     {name:"Lights", artist:"Ellie Goulding", id:"t5482177"},
     //     {name:"Little Talks", artist:"Of Monsters and Men", id:"t16498218"} ]});
 };
+
+function getHand(songs, callback) {
+	SongCard.findOne({inDeck: true}).exec(function (err, response) {
+		if (err) {
+			console.log("Error getting song card", err);
+		} else {
+			songs.push(response);
+			response.set({inDeck: false});
+			response.save(function (err) {
+				if (err) {
+					console.log("Error marking card as inDeck: false", err);
+				}
+				callback(songs);
+			});
+		}
+	});
+};
+
 
 // Screen that players see while waiting for the dealer to choose; they can see all the submitted cards.
 exports.playerwait = function(req, res) {

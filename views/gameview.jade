@@ -15,11 +15,11 @@ block content
         each song, i in songs 
           span.span2
             .div-1
-              h4.dom-heading #{song.name}
+              h4.dom-heading #{song.title}
               h4.dom-heading
                 | #{song.artist}
                 div
                   br
-              button.btn.btn-1.btn-2.playbutton(id=song.id) Play
+              button.btn.btn-1.btn-2.playbutton(id=song.track) Play
               button.btn.btn-2.btn-3 Submit
           

@@ -17,7 +17,7 @@ exports.dealerscreen = function(req, res) {
 			if (response.theme[0].theme == null) {
 				theme = response.theme[0].theme;
 			} else {
-				theme = "Silly";
+				theme = "Wait for it...";
 			}
 			console.log(theme);
 			res.render('dealerviewfirst', {title: 'Express', theme: theme, songs: []});

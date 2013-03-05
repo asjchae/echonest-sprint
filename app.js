@@ -54,8 +54,8 @@ app.get('/users/delete', admin.deleteusers);
 // app.get('/newround', gameplay.newround); // start a new round
 app.get('/dealer', dealer.dealerscreen); // the screen the dealer sees to pick
 // app.get('/playerwait', gameplay.playerwait); // players wait for the dealer to choose
- app.get('/roundfinish', gameplay.roundfinish);  // everyone sees the results
-
+app.get('/roundfinish', gameplay.roundfinish);  // everyone sees the results
+app.get('/getupdates', dealer.getupdates);
 // note: don't delete card until after dealer chooses so we know who won
 
 // app.post('/start', gameplay.start);

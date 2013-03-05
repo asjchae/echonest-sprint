@@ -4,11 +4,25 @@ var echojs = require('echojs')
 	, mongoose = require('mongoose')
 	, async = require('async')
 	, User = require('../models/user_schema')
-	, cards = require('../routes/cards');
+	, cards = require('../routes/cards')
+	, Dealer = require('../models/dealer_schema');
 
 // The screen the dealer sees to pick.
 exports.dealerscreen = function(req, res) {
-	res.send("meow");
+	Dealer.findOne({}).exec(function (err, response) {
+		if (err) {
+			console.log("Error", err);
+		} else if (!response) {
+			var dealer = new Dealer({});
+			dealer.save(function (err) {
+				if (err) {
+					console.log("Error", err);
+				}
+			});
+		} else {
+			console.log(response.card_hand);
+		}
+	})
 };
 
 // The waiting screen for the dealer while players pick their submissions.
@@ -19,4 +33,8 @@ exports.dealerwait = function(req, res) {
 
 exports.dealersubmit = function(req, res) {
 	console.log("Dealer:" + req.body)
+};
+
+exports.getupdates = function(req, res) {
+
 };

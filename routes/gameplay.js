@@ -4,7 +4,8 @@ var echojs = require('echojs')
 	, mongoose = require('mongoose')
 	, async = require('async')
 	, User = require('../models/user_schema')
-	, cards = require('../routes/cards');
+	, cards = require('../routes/cards')
+	, Dealer = require('../models/dealer_schema');
 
 
 // NOTE: don't delete card until after dealer chooses so we know who won
@@ -192,6 +193,24 @@ exports.playersubmit = function(req, res) {
 	getTheme(function(theme) {
 		thema = theme.theme;
 	});
+
+	// Dealer.findOne({}).exec(function (err, response) {
+	// 	if (err) {
+	// 		console.log("Error", err);
+	// 	} else if (!response) {
+	// 		var dealer = new Dealer({card_hand: req.body.title});
+	// 		dealer.save(function (err) {
+	// 			if (err) {
+	// 				console.log("Error", err);
+	// 			}
+	// 		});
+	// 	} else {
+	// 		var submitted = response.card_hand;
+	// 		submitted.push(req.body.title);
+	// 		response.set({card_hand: submitted});
+	// 	}
+	// });
+
 	User.findOne({username: req.session.user}).populate('card_hand').exec(function (err, response) {
 		var user = response;
 		if (err) {

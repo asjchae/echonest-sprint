@@ -2,7 +2,7 @@ extends layout
 
 block content
     script(src='/javascripts/gameview.js')
-    script(src='https://raw.github.com/rdio/jquery.rdio.js/master/jquery.rdio.js')
+    
   
     .container-fluid
       .row-fluid
@@ -21,5 +21,5 @@ block content
                 div
                   br
               button.btn.btn-1.btn-2.playbutton(id=song.track) Play
-              button.btn.btn-2.btn-3 Submit
+              button.btn.btn-2.btn-3.submitbutton(id=song.title) Submit
           

@@ -7,6 +7,11 @@ $(function() {
         });
         $('#'+this.id).rdio('GAlNi78J_____zlyYWs5ZG02N2pkaHlhcWsyOWJtYjkyN2xvY2FsaG9zdEbwl7EHvbylWSWFWYMZwfc=');
     })
+
+    $(".submitbutton").click(function(){
+        console.log(this.id);
+        
+    })
   })
 
 

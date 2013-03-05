@@ -81,24 +81,24 @@ function songcardMaker(song, callback) {
 
 // Make theme cards.
 
-exports.themecards = function(req, res) {
-	var themes = ['Happy', 'Sad', 'Childhood', 'Party', 'Day on the beach', 'Workout', 'Study', 'Sleep', 'Angry', 'Helen Keller'];
+exports.themecards = function(callback) {
+	var themes = ['Sad', 'Happy', 'Childhood', 'Party', 'Day on the beach', 'Workout', 'Study', 'Sleep', 'Angry', 'Helen Keller'];
 	async.forEach(themes, function(item, next){
 		themecardMaker(item, next);
 	}, function (err) {
 		if (err) {
 			console.log("Error", err);
 		}
-		res.redirect('/themecards');
+		callback();
 	});
 };
 
 
 function themecardMaker(theme, callback) {
-	ThemeCard.findOne({theme: theme}).exec(function (err, response) {
-		if (err) {
-			console.log("Error finding existing theme card", err);
-		} else if (!response) {
+	// ThemeCard.findOne({theme: theme}).exec(function (err, response) {
+	// 	if (err) {
+	// 		console.log("Error finding existing theme card", err);
+	// 	} else if (!response) {
 			var newThemeCard = new ThemeCard({theme: theme, inDeck: true});
 			newThemeCard.save(function(err) {
 				if (err) {
@@ -106,8 +106,8 @@ function themecardMaker(theme, callback) {
 				}
 			callback();
 			});
-		} else {
-			callback();
-		}
-	});
+	// 	} else {
+	// 		callback();
+	// 	}
+	// });
 }

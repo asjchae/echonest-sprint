@@ -25,8 +25,50 @@ exports.dealerwait = function(req, res) {
 
 };
 
+
+function getTheme(callback) {
+	ThemeCard.findOne({inDeck: true}).exec(function (err, response) {
+		if (err) {
+			console.log("Error getting theme card", err);
+		} else if (!response) {
+			cards.themecards(function() {
+				ThemeCard.findOne({inDeck: true}).exec(function (err, response) {
+					if (err) {
+						console.log("Error getting theme card", err);
+					} else {
+						thema = response;
+						thema.set({inDeck: false});
+						thema.save(function (err) {
+							if (err) {
+								console.log("Error", err);
+							} else {
+								callback(thema);
+							}
+						});
+					}
+				});
+			});
+		} else {
+			var theme = response;
+			theme.set({inDeck: false});
+			theme.save(function (err) {
+				if (err) {
+					console.log("Error", err);
+				} else {
+					callback(theme);
+				}
+			});
+
+		}
+	});
+}
+
 // Screen where players can choose which card to submit.
 exports.playerscreen = function(req, res) {
+	var thema;
+	getTheme(function(theme) {
+		thema = theme.theme;
+	});
 	var songs;
 	getHand(songs, function(songs) {
 		User.findOne({username: req.session.user}).exec(function (err, response) {
@@ -40,10 +82,10 @@ exports.playerscreen = function(req, res) {
 					} else {
 						User.findOne({username: response.username}).populate('card_hand').exec(function (err, response) {
 							if (err) {
-							console.log("Error", err);
+								console.log("Error", err);
 							} else {
 								var hand = response.card_hand;
-								res.render('gameview', {title: 'Express', theme: "Happy", songs: hand});
+								res.render('gameviewpartial', {title: 'Express', theme: thema, songs: hand}); // changed from 'gameview' to 'gameviewpartial'
 							}
 						});
 					}
@@ -153,6 +195,10 @@ exports.start = function(req, res) {
 };
 
 exports.playersubmit = function(req, res) {
+	var thema;
+	getTheme(function(theme) {
+		thema = theme.theme;
+	});
 	User.findOne({username: req.session.user}).populate('card_hand').exec(function (err, response) {
 		var user = response;
 		if (err) {
@@ -182,7 +228,7 @@ exports.playersubmit = function(req, res) {
 										console.log("Error", err);
 									} else {
 										var hand = response.card_hand;
-										res.render('gameviewpartial', {title: 'Express', theme: "Hapopy", songs: hand});
+										res.render('gameviewpartial', {title: 'Express', theme: thema, songs: hand});
 									}
 								});
 							}
@@ -207,7 +253,7 @@ exports.playersubmit = function(req, res) {
 								} else {
 									var hand = response.card_hand;
 									console.log(hand);
-									res.render('gameviewpartial', {title: 'Express', theme: "Happy", songs: hand});
+									res.render('gameviewpartial', {title: 'Express', theme: thema, songs: hand});
 								}
 							});
 						}

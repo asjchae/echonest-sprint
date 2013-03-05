@@ -6,4 +6,13 @@ $(function(){
             $("#page").append(data)
         })
     })
+
+    $("#loginjade").keypress(function(e) {
+        if (e.charCode == 13){
+            $.post("/signin", {inputUsername:$("#inputUsername")[0].value, inputPassword: $('#inputPassword')[0].value}, function(data) {
+                $("#loginjade").remove()
+                $("#page").append(data)
+            })      
+        }  
+    });
 })

@@ -48,6 +48,7 @@ app.get('/themecards/delete', admin.deletethemecards);
 app.get('/themecards', admin.themecards); 
 app.get('/users', admin.allusers);
 app.get('/users/delete', admin.deleteusers);
+app.get('/dealercards/delete', admin.deletedealercards);
 
 // Game Play
 
@@ -62,6 +63,7 @@ app.get('/getupdates', dealer.getupdates);
 app.post('/playersubmit', gameplay.playersubmit);
 app.post('/dealersubmit', dealer.dealersubmit);
 app.post('/dealerwait', dealer.dealerwait); // waiting screen for the dealer while players pick
+
 
 // POST requests
 app.post('/signin', user.signin)

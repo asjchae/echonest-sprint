@@ -9,20 +9,9 @@ var echojs = require('echojs')
 
 // The screen the dealer sees to pick.
 exports.dealerscreen = function(req, res) {
-	Dealer.findOne({}).exec(function (err, response) {
-		if (err) {
-			console.log("Error", err);
-		} else if (!response) {
-			var dealer = new Dealer({});
-			dealer.save(function (err) {
-				if (err) {
-					console.log("Error", err);
-				}
-			});
-		} else {
-			console.log(response.card_hand);
-		}
-	})
+	Dealer.findOne({}).populate('theme').exec(function (err, response) {
+		console.log(response);
+	});
 };
 
 // The waiting screen for the dealer while players pick their submissions.

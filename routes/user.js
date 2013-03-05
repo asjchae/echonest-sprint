@@ -1,5 +1,7 @@
 var User = require('../models/user_schema')
-	, mongoose = require('mongoose');
+	, Dealer = require('../models/dealer_schema')
+	, mongoose = require('mongoose')
+	, gameplay = require('../routes/gameplay');
 
 // User schema contains:
 
@@ -79,6 +81,22 @@ exports.signin = function(req, res) {
 
 function login(req, res, user) {
 	req.session.user = req.body.inputUsername;
+
+	Dealer.findOne({}).exec(function (err, response) {
+		if (err) {
+			console.log("Error", err);
+		} else if (!response) {
+			gameplay.getTheme(function(theme) {
+				var dealer = new Dealer({theme: theme});
+				dealer.save(function (err) {
+					if (err) {
+						console.log("Error", err);
+					}
+				});
+			});
+		}
+	});	
+
 	if (user.is_dealer == false) {
 		return res.redirect('/play');
 	} else {

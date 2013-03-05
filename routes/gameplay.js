@@ -57,14 +57,10 @@ function getHand(songs, callback) {
 	SongCard.find({inDeck: true}).limit(6).exec(function (err, response) {
 		if (err) {
 			console.log("Error getting song card", err);
-		// } else if (!response) {
-		// 	SongCard.findOne({}).sort('hotness').exec(function (err, response) {
-		// 		if (!response) {
-		// 			cards.songcards();
-		// 		} else {
-		// 			console.log("something");
-		// 		}
-		// 	});
+		} else if (response[0] == null) {
+			getMore(function(songs) {
+				callback(songs);
+			});
 		} else {
 			songs = response;
 			async.forEach(response, function(item, next) {
@@ -78,6 +74,33 @@ function getHand(songs, callback) {
 		}
 	});
 };
+
+function getMore(callback) {
+	SongCard.findOne({}).sort('hotness').exec(function (err, response) {
+		if (!response) {
+			cards.songcards(function() {
+				SongCard.find({inDeck: true}).limit(6).exec(function (err, response) {
+					if (err) {
+						console.log("Error getting song card", err);
+					} else {
+						songs = response;
+						async.forEach(response, function(item, next) {
+							setFalse(item, next);
+						}, function (err) {
+							if (err) {
+								console.log("Error", err);
+							}
+							callback(songs);
+						});
+					}
+				});
+			});
+		} else {
+			console.log("something");
+			callback();
+		}
+	});
+}
 
 function setFalse(song, callback) {
 	song.set({inDeck: false});

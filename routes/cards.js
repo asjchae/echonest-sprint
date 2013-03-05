@@ -13,7 +13,7 @@ var echo = echojs({
 
 
 // Gets songs from Echonest.
-exports.songcards = function(req, res){
+exports.songcards = function(callback){
 	getSongs(function(songlist) {
 		async.forEach(songlist, function(item, next) {
 			songcardMaker(item, next);
@@ -21,7 +21,7 @@ exports.songcards = function(req, res){
 			if (err) {
 				console.log("Error", err);
 			}
-			return null;
+			callback();
 		});
 	});
 };

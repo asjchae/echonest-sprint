@@ -9,9 +9,13 @@ var echojs = require('echojs')
 
 // The screen the dealer sees to pick.
 exports.dealerscreen = function(req, res) {
+	var theme;
 	Dealer.findOne({}).populate('theme').exec(function (err, response) {
-		console.log(response);
+		theme = response.theme[0].theme
+		console.log(theme);
+		res.render('gameviewdealerpartial', {title: 'Express', theme: theme, songs: []});
 	});
+
 };
 
 // The waiting screen for the dealer while players pick their submissions.
@@ -25,5 +29,7 @@ exports.dealersubmit = function(req, res) {
 };
 
 exports.getupdates = function(req, res) {
+
+	// send back ('gameviewdealerpartial', {title: 'Express', theme: , submitted_cards: };
 
 };

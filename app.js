@@ -49,6 +49,7 @@ app.get('/themecards', admin.themecards);
 app.get('/users', admin.allusers);
 app.get('/users/delete', admin.deleteusers);
 app.get('/dealercards/delete', admin.deletedealercards);
+app.get('/test', admin.testrefresh);
 
 // Game Play
 

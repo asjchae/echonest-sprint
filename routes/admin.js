@@ -59,3 +59,9 @@ exports.deletedealercards = function(req, res) {
 	var deleteAll = Dealer.find({}).remove();
 	res.redirect('/');
 }
+
+exports.testrefresh = function(req, res) {
+	var del = Dealer.find({}).remove();
+	var cray = User.find({}).remove();
+	res.redirect('/');
+}

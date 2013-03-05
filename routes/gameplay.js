@@ -186,6 +186,9 @@ exports.start = function(req, res) {
 };
 
 exports.playersubmit = function(req, res) {
+
+	// ADD TO DEALER SUBMITTED_CARDS. 
+
 	// var thema;
 	// getTheme(function(theme) {
 	// 	thema = theme.theme;

@@ -33,7 +33,7 @@ exports.songcards = function(req, res){
 
 function getSongs(callback) {
 	echo.debug = true;
-	echo('song/search').get({results: 100, sort: 'song_hotttnesss-desc', bucket: ['tracks', 'id:rdio-US']}, function (err, json) { // style: 'pop'
+	echo('song/search').get({results: 100, sort: 'song_hotttnesss-desc', bucket: ['tracks', 'id:rdio-US', 'song_hotttnesss']}, function (err, json) { // style: 'pop'
 		var songlist = [];
 		var dups = [];
 		for (var i=0; i<json.response.songs.length; i++) {
@@ -57,10 +57,12 @@ function getSongs(callback) {
 // Saves to the SongCard database.
 
 function songcardMaker(song, callback) {
+	console.log(song);
 	var titulo = song.title.toString();
 	var artista = song.artist_name.toString();
 	var tracks = song.tracks[0].foreign_id.toString();
 	var rdiotrack = tracks.split(':')[2];
+	var hot = song.tracks[0].song_hotttnesss.toString();
 	SongCard.findOne({title: titulo}).exec(function (err, response) {
 		if (err) {
 			console.log("Error finding existing song card", err);

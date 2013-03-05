@@ -4,7 +4,8 @@ var songcards_schema = mongoose.Schema({
 	title: String,
 	artist: String,
 	track: String,
-	inDeck: Boolean
+	inDeck: Boolean,
+	hotness: String
 });
 
 var songcard = mongoose.model('songcard', songcards_schema);

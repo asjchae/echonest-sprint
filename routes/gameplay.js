@@ -66,6 +66,9 @@ function getHand(songs, callback) {
 	SongCard.findOne({inDeck: true}).exec(function (err, response) {
 		if (err) {
 			console.log("Error getting song card", err);
+		} else if (!response) {
+
+
 		} else {
 			songs.push(response);
 			response.set({inDeck: false});
@@ -86,6 +89,7 @@ Yo, I want to get a card where inDeck = true. Are there cards?
 Yes: Get a card.
 No: Look at all the SongCards and find the one with the lowest hotttnesss and do a search based on that.
 
+	SongCard.findOne({}).sort('')
 
 */
 

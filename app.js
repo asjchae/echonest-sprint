@@ -46,7 +46,7 @@ app.get('/getthemecards', cards.themecards)
 app.get('/songcards/delete', admin.deletesongcards);
 app.get('/songcards', admin.songcards);
 app.get('/themecards/delete', admin.deletethemecards);
-app.get('/themecards', admin.themecards);
+app.get('/themecards', admin.themecards); 
 app.get('/users', admin.allusers);
 
 // Game Play

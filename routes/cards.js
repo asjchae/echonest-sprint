@@ -57,17 +57,16 @@ function getSongs(callback) {
 // Saves to the SongCard database.
 
 function songcardMaker(song, callback) {
-	console.log(song);
 	var titulo = song.title.toString();
 	var artista = song.artist_name.toString();
 	var tracks = song.tracks[0].foreign_id.toString();
 	var rdiotrack = tracks.split(':')[2];
-	var hot = song.tracks[0].song_hotttnesss.toString();
+	var hot = song.song_hotttnesss;
 	SongCard.findOne({title: titulo}).exec(function (err, response) {
 		if (err) {
 			console.log("Error finding existing song card", err);
 		} else if (!response) {
-			var newSongCard = new SongCard({title: titulo, artist: artista, track: rdiotrack, inDeck: true});
+			var newSongCard = new SongCard({title: titulo, artist: artista, track: rdiotrack, inDeck: true, hotness: hot}); // 
 			newSongCard.save(function(err) {
 				if (err) {
 					console.log("Error saving new song card", err);

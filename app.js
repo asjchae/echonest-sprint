@@ -11,7 +11,8 @@ var express = require('express')
   , cards= require('./routes/cards')
   , mongoose = require('mongoose')
   , admin = require('./routes/admin')
-  , gameplay = require('./routes/gameplay');
+  , gameplay = require('./routes/gameplay')
+  , dealer = require('./routes/dealer');
 
 var app = express();
 
@@ -50,8 +51,8 @@ app.get('/users', admin.allusers);
 // Game Play
 
 // app.get('/newround', gameplay.newround); // start a new round
-app.get('/dealer', gameplay.dealerscreen); // the screen the dealer sees to pick
-// app.get('/dealerwait', gameplay.dealerwait); // waiting screen for the dealer while players pick
+app.get('/dealer', dealer.dealerscreen); // the screen the dealer sees to pick
+// app.get('/dealerwait', dealer.dealerwait); // waiting screen for the dealer while players pick
 // app.get('/playerwait', gameplay.playerwait); // players wait for the dealer to choose
  app.get('/roundfinish', gameplay.roundfinish);  // everyone sees the results
 
@@ -59,7 +60,7 @@ app.get('/dealer', gameplay.dealerscreen); // the screen the dealer sees to pick
 
 // app.post('/start', gameplay.start);
 app.post('/playersubmit', gameplay.playersubmit);
-app.post('/dealersubmit', gameplay.dealersubmit);
+app.post('/dealersubmit', dealer.dealersubmit);
 
 
 // POST requests

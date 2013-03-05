@@ -15,15 +15,7 @@ exports.newround = function(req, res) {
 
 };
 
-// The screen the dealer sees to pick.
-exports.dealerscreen = function(req, res) {
 
-};
-
-// The waiting screen for the dealer while players pick their submissions.
-exports.dealerwait = function(req, res) {
-
-};
 
 
 function getTheme(callback) {
@@ -253,7 +245,6 @@ exports.playersubmit = function(req, res) {
 									console.log("Error", err);
 								} else {
 									var hand = response.card_hand;
-									console.log(hand);
 									res.render('gameviewpartial', {title: 'Express', theme: thema, songs: hand});
 								}
 							});
@@ -286,8 +277,4 @@ function getMore2(callback) {
 			});
 		});
 	});
-};
-
-exports.dealersubmit = function(req, res) {
-	console.log("Dealer:" + req.body)
 };

@@ -26,12 +26,11 @@ $(function() {
 
     })
 
-
     var start = new Date;
 
-     var timer = function() {
+    var timer = function() {
       console.log("here")
-      var time = 10 - Math.floor((new Date - start) / 1000)
+      var time = 30 - Math.floor((new Date - start) / 1000)
       console.log(time)
       if (time==0){
         clearInterval(x);
@@ -42,9 +41,11 @@ $(function() {
         });   
       }
       $('.Timer').text( ( time ) + " Seconds");
-    }
+    }  
 
     var x = setInterval(timer, 1000);
+
+
   })
 
 

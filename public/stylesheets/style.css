@@ -2,6 +2,22 @@
 [class*="dom-heading"] {
   margin: 0;
 }
+#absolute-wrapper {
+  position: relative;
+  width: 980px;
+  margin: 0 auto;
+  height: 1px;
+}
+#absolute-wrapper .image {
+  opacity: 0.35px;
+  width: 1152px;
+  height: 825px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index:-1;
+}
+
 .dom-heading1 {
   font-family:"Arial";
   padding: 20px 0px 0px 0px;

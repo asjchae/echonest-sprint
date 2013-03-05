@@ -1,0 +1,21 @@
+script(src='/javascripts/gameview.js')
+.container-fluid(id="gameview")
+  .row-fluid
+    span.span4
+    span.span3
+      div
+        h1.dom-heading1 #{theme}
+    span.span4
+  .row-fluid
+    each song, i in songs 
+      span.span2
+        .div-1
+          h4.dom-heading(style="font:20px arial,sans-serif") #{song.title}
+          h4.dom-heading(style="font:16px arial,sans-serif")
+            | #{song.artist}
+            div
+              br
+          div
+            button.btn.btn-1.btn-2.playbutton(id=song.track, style="width:80px;margin-left: 27px;margin-right: 27px;") Play
+            button.btn.btn-2.btn-3.selectbutton(id=song.title, style="width:80px; margin-left: 27px;margin-right: 27px;position: relative;bottom: 0px;") Select
+      

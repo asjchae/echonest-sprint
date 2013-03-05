@@ -12,7 +12,10 @@ $(function() {
 
     $(".submitbutton").click(function(){
         console.log(this.id);
-        $.post("/playersubmit", {title: this.id});
+        $.post("/playersubmit", {title: this.id}, function(data) {
+          $("#gameview").remove()
+          $("#page").append(data)
+        });
 
     })
 

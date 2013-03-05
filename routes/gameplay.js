@@ -63,7 +63,6 @@ function getHand(songs, callback) {
 			});
 		} else {
 			if (response.length == 6) {
-				console.log(response.length);
 				songs = response;
 				async.forEach(response, function(item, next) {
 					setFalse(item, next);
@@ -154,7 +153,47 @@ exports.start = function(req, res) {
 };
 
 exports.playersubmit = function(req, res) {
-	console.log("Player:" + req.body)
+	User.findOne({username: req.session.user}).populate('card_hand').exec(function (err, response) {
+		var user = response;
+		if (err) {
+			console.log("Error", err);
+		} else if (!response) {
+			console.log("Please log in");
+		} else {
+			var cardhand = response.card_hand;
+			cardhand = cardhand.filter(function(card) {
+				if (card.title != req.body.title) {
+					return true;
+				}
+			});
+			SongCard.findOne({inDeck: true}).exec(function (err, response) {
+				if (err) {
+					console.log("Error", err);
+				} else if (!response) {
+					// omg
+				} else {
+					cardhand.push(response);
+					user.set({card_hand: cardhand});
+					user.save(function (err) {
+						if (err) {
+							console.log("Error saving hand", err);
+						} else {
+							User.findOne({username: user.username}).populate('card_hand').exec(function (err, response) {
+								if (err) {
+									console.log("Error", err);
+								} else {
+									var hand = user.card_hand;
+									res.render('gameview', {title: 'Express', theme: "Happy", songs: hand});
+								}
+							});
+						}
+					});
+				}
+			});
+		}
+	});
+	// console.log(req.body.title); // Song title
+	// console.log(req.session.user); // Username
 };
 
 exports.dealersubmit = function(req, res) {

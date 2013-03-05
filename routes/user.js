@@ -23,17 +23,66 @@ exports.signin = function(req, res) {
 				if (err) {
 					console.log("Error saving new user", err);	
 				} else {
-					login(req, res, user);
+					User.findOne({is_dealer: true}).exec(function (err, response) {
+						if (err) {
+							console.log("Error", err);
+						} else if (!response) {
+							user.set({is_dealer: true});
+							user.save(function (err) {
+								if (err) {
+									console.log("Error", err);
+								} else {
+									login(req, res, user);
+								}
+							});
+						} else {
+							user.set({is_dealer: false});
+							user.save(function (err) {
+								if (err) {
+									console.log("Error", err);
+								} else {
+									login(req, res, user);
+								}
+							});
+						}
+					});
 				}	
 			});
 		} else {
-			login(req, res, user);
+			var user = response;
+			User.findOne({is_dealer: true}).exec(function(err, response) {
+				if (err) {
+					console.log("Error", err);
+				} else if (!response) {
+					user.set({is_dealer: true});
+					user.save(function (err) {
+						if (err) {
+							console.log("Error", err);
+						} else {
+							login(req, res, user);
+						}
+					});
+				} else {
+					user.set({is_dealer: false});
+					user.save(function (err) {
+						if (err) {
+							console.log("Error", err);
+						} else {
+							login(req, res, user);
+						}
+					});
+				}
+			});
 		}
 	});
 };
 
 function login(req, res, user) {
 	req.session.user = req.body.inputUsername;
-	return res.redirect('/play');
+	if (user.is_dealer == false) {
+		return res.redirect('/play');
+	} else {
+		return res.redirect('/dealerscreen');
+	}
 };
  

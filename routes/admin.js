@@ -48,3 +48,8 @@ exports.allusers = function(req, res) {
 		}
 	});
 };
+
+exports.deleteusers = function(req, res) {
+	var deleteAll = User.find({}).remove();
+	res.redirect('/users');
+}

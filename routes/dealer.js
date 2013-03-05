@@ -8,12 +8,13 @@ var echojs = require('echojs')
 
 // The screen the dealer sees to pick.
 exports.dealerscreen = function(req, res) {
-
+	res.send("meow");
 };
 
 // The waiting screen for the dealer while players pick their submissions.
 exports.dealerwait = function(req, res) {
-
+	console.log(req.body.title);
+	console.log(req.session.user);
 };
 
 exports.dealersubmit = function(req, res) {

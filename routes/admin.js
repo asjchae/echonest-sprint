@@ -1,6 +1,7 @@
 var SongCard = require('../models/songcards_schema')
 	, ThemeCard = require('../models/themecards_schema')
 	, User = require('../models/user_schema')
+	, Dealer = require('../models/dealer_schema')
 	, mongoose = require('mongoose');
 
 // Lists all song cards.
@@ -52,4 +53,9 @@ exports.allusers = function(req, res) {
 exports.deleteusers = function(req, res) {
 	var deleteAll = User.find({}).remove();
 	res.redirect('/users');
+}
+
+exports.deletedealercards = function(req, res) {
+	var deleteAll = Dealer.find({}).remove();
+	res.redirect('/');
 }

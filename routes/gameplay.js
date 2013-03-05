@@ -16,10 +16,7 @@ exports.newround = function(req, res) {
 
 };
 
-
-
-
-function getTheme(callback) {
+exports.getTheme = function getTheme(callback) {
 	ThemeCard.findOne({inDeck: true}).exec(function (err, response) {
 		if (err) {
 			console.log("Error getting theme card", err);
@@ -59,8 +56,8 @@ function getTheme(callback) {
 // Screen where players can choose which card to submit.
 exports.playerscreen = function(req, res) {
 	var thema;
-	getTheme(function(theme) {
-		thema = theme.theme;
+	Dealer.findOne({}).populate('theme').exec(function (err, response) {
+		thema = response.theme[0].theme;
 	});
 	var songs;
 	getHand(songs, function(songs) {
@@ -189,10 +186,10 @@ exports.start = function(req, res) {
 };
 
 exports.playersubmit = function(req, res) {
-	var thema;
-	getTheme(function(theme) {
-		thema = theme.theme;
-	});
+	// var thema;
+	// getTheme(function(theme) {
+	// 	thema = theme.theme;
+	// });
 
 	// Dealer.findOne({}).exec(function (err, response) {
 	// 	if (err) {

@@ -63,7 +63,7 @@ function getSongs(maxhot, callback) {
 // Saves to the SongCard database.
 
 function songcardMaker(song, callback) {
-	var titulo = song.title.toString();
+	var titulo = song.title.toString().split('(')[0];
 	var artista = song.artist_name.toString();
 	var tracks = song.tracks[0].foreign_id.toString();
 	var rdiotrack = tracks.split(':')[2];

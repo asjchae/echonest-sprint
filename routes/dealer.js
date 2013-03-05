@@ -13,7 +13,7 @@ exports.dealerscreen = function(req, res) {
 	Dealer.findOne({}).populate('theme').exec(function (err, response) {
 		theme = response.theme[0].theme
 		console.log(theme);
-		res.render('gameviewdealerpartial', {title: 'Express', theme: theme, songs: []});
+		res.render('dealerviewfirst', {title: 'Express', theme: theme, songs: []});
 	});
 
 };
@@ -29,8 +29,10 @@ exports.dealersubmit = function(req, res) {
 };
 
 exports.getupdates = function(req, res) {
-	Dealer.findOne({}).populate('submitted_cards', 'theme').exec(function (err, response) {
+	Dealer.findOne({}).populate('submitted_cards').populate('theme').exec(function (err, response) {
 		var submitted = response.submitted_cards;
+		console.log(response.theme[0].theme)
+		console.log(submitted)
 		res.render('gameviewdealerpartial', {title: 'Express', theme: response.theme[0].theme, songs: submitted});
 	});
 };

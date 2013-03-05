@@ -36,8 +36,9 @@ $(function() {
     var start = new Date;
 
     var timer = function() {
-
-      var time = 30 - Math.floor((new Date - start) / 1000)
+      var currtime = Math.floor((new Date).getTime()/1000)
+ 
+      var time = 60 - Math.floor((new Date - start) / 1000)
       if (time==0){
         clearInterval(x);
         $.get("/roundfinish", function(data) {

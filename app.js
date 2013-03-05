@@ -39,8 +39,6 @@ app.configure('development', function(){
 app.get('/', user.login);
 app.get('/play', gameplay.playerscreen);
 
-
-app.get('/getsongcards', cards.songcards);
 app.get('/getthemecards', cards.themecards)
 
 app.get('/songcards/delete', admin.deletesongcards);

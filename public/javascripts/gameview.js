@@ -23,6 +23,26 @@ $(function() {
         $.post("/dealersubmit", {title: this.id});
 
     })
+
+
+    var start = new Date;
+
+     var timer = function() {
+      console.log("here")
+      var time = 10 - Math.floor((new Date - start) / 1000)
+      console.log(time)
+      if (time==0){
+        clearInterval(x);
+        $.get("/roundfinish", function(data) {
+          $("#gameview").remove()
+          $("#page").append(data)
+          
+        });   
+      }
+      $('.Timer').text( ( time ) + " Seconds");
+    }
+
+    var x = setInterval(timer, 1000);
   })
 
 

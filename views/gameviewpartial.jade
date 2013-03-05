@@ -10,11 +10,12 @@ script(src='/javascripts/gameview.js')
     each song, i in songs 
       span.span2
         .div-1
-          h4.dom-heading #{song.title}
-          h4.dom-heading
+          h4.dom-heading(style="font:20px arial,sans-serif") #{song.title}
+          h4.dom-heading(style="font:16px arial,sans-serif")
             | #{song.artist}
             div
               br
-          button.btn.btn-1.btn-2.playbutton(id=song.track, style="width:80px;margin-left: 27px;margin-right: 27px;position: relative;top: 18px; ") Play
-          button.btn.btn-2.btn-3.submitbutton(id=song.title, style="width:80px; margin-left: 27px;margin-right: 27px;position: relative;top: 38px;") Submit
+          div
+            button.btn.btn-1.btn-2.playbutton(id=song.track, style="width:80px;margin-left: 27px;margin-right: 27px;") Play
+            button.btn.btn-2.btn-3.submitbutton(id=song.title, style="width:80px; margin-left: 27px;margin-right: 27px;position: relative;bottom: 0px;") Submit
       

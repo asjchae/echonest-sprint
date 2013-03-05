@@ -184,6 +184,7 @@ exports.playerwait = function(req, res) {
 
 // Everyone sees the results.
 exports.roundfinish = function(req, res) {
+	res.send("Yay!")
 
 };
 

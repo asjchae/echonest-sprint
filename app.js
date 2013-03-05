@@ -39,6 +39,9 @@ app.configure('development', function(){
 
 app.get('/', user.login);
 app.get('/play', gameplay.playerscreen);
+// app.get('/rules', gameplay.rules);
+// app.get('/contact', gameplay.contact);
+
 
 app.get('/getthemecards', cards.themecards)
 

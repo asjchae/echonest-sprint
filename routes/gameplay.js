@@ -264,7 +264,7 @@ exports.playersubmit = function(req, res) {
 									console.log("Error", err);
 								} else {
 									var hand = response.card_hand;
-									res.render('gameviewpartial', {title: 'Express', theme: thema, songs: hand});
+									res.render('gameviewpartial', {title: 'Express', theme: theme, songs: hand});
 								}
 							});
 						}
@@ -297,3 +297,12 @@ function getMore2(callback) {
 		});
 	});
 };
+
+// exports.rules = function(req, res) {
+// 	res.send("Hi")
+// }
+
+
+// exports.contact = function(req, res) {
+// 	res.send("Hi")
+// }

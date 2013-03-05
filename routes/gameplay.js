@@ -216,8 +216,6 @@ exports.playersubmit = function(req, res) {
 			});
 		}
 	});
-	// console.log(req.body.title); // Song title
-	// console.log(req.session.user); // Username
 };
 
 function getMore2(callback) {

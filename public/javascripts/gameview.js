@@ -2,11 +2,17 @@ $(function() {
   $.getScript('https://raw.github.com/rdio/jquery.rdio.js/master/jquery.rdio.js', function(){
     $(".playbutton").click(function(){
         console.log(this.id);
-        $('#'+this.id).bind('ready.rdio', function() {
-            $(this).rdio().play(this.id);
-            console.log(this.val())
-        });
-        $('#'+this.id).rdio('GAlNi78J_____zlyYWs5ZG02N2pkaHlhcWsyOWJtYjkyN2xvY2FsaG9zdEbwl7EHvbylWSWFWYMZwfc=');
+        console.log($('#'+this.id))
+        if ($('#'+this.id)[0].textContent == "Play"){
+          $('#'+this.id)[0].textContent = "Pause"
+          $('#'+this.id).bind('ready.rdio', function() {
+              $(this).rdio().play(this.id);
+          });
+          $('#'+this.id).rdio('GAlNi78J_____zlyYWs5ZG02N2pkaHlhcWsyOWJtYjkyN2xvY2FsaG9zdEbwl7EHvbylWSWFWYMZwfc=');
+        } else if ($('#'+this.id)[0].textContent == "Pause"){
+          $('#'+this.id)[0].textContent = "Play"
+          $('#'+this.id).rdio().pause()        
+        }
     })
 
     //actual token 'GB9RNVyF_____3RyYnR6czNqcnE0ejN5cWE2a3l4a3V3bmRyeS13b29kbGFuZC05NDgwLmhlcm9rdWFwcC5jb23SVXD5VVuhJReswyax9tJf')

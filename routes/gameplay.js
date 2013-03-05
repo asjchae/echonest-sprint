@@ -170,7 +170,24 @@ exports.playersubmit = function(req, res) {
 				if (err) {
 					console.log("Error", err);
 				} else if (!response) {
-					// omg
+					getMore2(function(song) {
+						cardhand.push(song);
+						user.set({card_hand: cardhand});
+						user.save(function (err) {
+							if (err) {
+								console.log("Error saving hand", err);
+							} else {
+								User.findOne({username: user.username}).populate('card_hand').exec(function (err, response) {
+									if (err) {
+										console.log("Error", err);
+									} else {
+										var hand = response.card_hand;
+										res.render('gameviewpartial', {title: 'Express', theme: "Hapopy", songs: hand});
+									}
+								});
+							}
+						});
+					});
 				} else {
 					cardhand.push(response);
 					response.set({inDeck: false});
@@ -203,6 +220,29 @@ exports.playersubmit = function(req, res) {
 	// console.log(req.session.user); // Username
 };
 
+function getMore2(callback) {
+	SongCard.findOne({}).sort('hotness').exec(function (err, response) {
+		var max = response.hotness;
+		cards.songcards(max, function() {
+			SongCard.findOne({inDeck: true}).exec(function (err, response) {
+				if (err) {
+					console.log("Error", err);
+				} else {
+					song = response;
+					song.set({inDeck: false});
+					song.save(function (err) {
+						if (err) {
+							console.log("Error", err)
+						} else {
+							callback(song);
+						}
+					});
+				}
+			});
+		});
+	});
+};
+
 exports.dealersubmit = function(req, res) {
 	console.log("Dealer:" + req.body)
-};	
+};

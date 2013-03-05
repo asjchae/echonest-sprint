@@ -60,7 +60,7 @@ app.get('/users', admin.allusers);
 // note: don't delete card until after dealer chooses so we know who won
 
 // app.post('/start', gameplay.start);
-// app.post('/playersubmit', gameplay.playersubmit);
+app.post('/playersubmit', gameplay.playersubmit);
 // app.post('/dealersubmit', gameplay.dealersubmit);
 
 

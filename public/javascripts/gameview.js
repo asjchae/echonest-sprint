@@ -10,7 +10,8 @@ $(function() {
 
     $(".submitbutton").click(function(){
         console.log(this.id);
-        
+        $.post("/playersubmit", this.id);
+            
     })
   })
 

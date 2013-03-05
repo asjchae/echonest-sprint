@@ -38,7 +38,11 @@ exports.dealersubmit = function(req, res) {
 
 exports.getupdates = function(req, res) {
 	Dealer.findOne({}).populate('submitted_cards').populate('theme').exec(function (err, response) {
-		var submitted = response.submitted_cards;
+		submitted =[]
+		if (response != null || ){
+			var submitted = response.submitted_cards;
+		}
+
 		console.log(response.theme[0].theme)
 		console.log(submitted)
 		res.render('gameviewdealerpartial', {title: 'Express', theme: response.theme[0].theme, songs: submitted});

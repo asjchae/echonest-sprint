@@ -185,8 +185,30 @@ exports.start = function(req, res) {
 
 };
 
-exports.playersubmit = function(req, res) {
+function addToSubmit(title) {
+	SongCard.findOne({title: title}).exec(function (err, song) {
+		if (err) {
+			console.log(err);
+		} else {
+			Dealer.findOne({}).exec(function (err, response) {
+				if (err) {
+					console.log(err);
+				} else {
+					var submitted = response.submitted_cards;
+					submitted.push(song);
+					response.set({submitted_cards: submitted});
+					response.save(function (err) {
+						if (err) {
+							console.log(err);
+						}
+					});
+				}
+			});
+		}
+	});
+}
 
+exports.playersubmit = function(req, res) {
 	// ADD TO DEALER SUBMITTED_CARDS. 
 
 	// var thema;
@@ -222,6 +244,8 @@ exports.playersubmit = function(req, res) {
 			cardhand = cardhand.filter(function(card) {
 				if (card.title != req.body.title) {
 					return true;
+				} else {
+					addToSubmit(req.body.title);
 				}
 			});
 			SongCard.findOne({inDeck: true}).exec(function (err, response) {
@@ -240,7 +264,8 @@ exports.playersubmit = function(req, res) {
 										console.log("Error", err);
 									} else {
 										var hand = response.card_hand;
-										res.render('gameviewpartial', {title: 'Express', theme: thema, songs: hand});
+										var theme = "Submitted";
+										res.render('gameviewpartial', {title: 'Express', theme: theme, songs: hand});
 									}
 								});
 							}

@@ -264,6 +264,7 @@ exports.playersubmit = function(req, res) {
 									console.log("Error", err);
 								} else {
 									var hand = response.card_hand;
+									theme = "Submitted"
 									res.render('gameviewpartial', {title: 'Express', theme: theme, songs: hand});
 								}
 							});

@@ -13,8 +13,8 @@ var echo = echojs({
 
 
 // Gets songs from Echonest.
-exports.songcards = function(callback){
-	getSongs(function(songlist) {
+exports.songcards = function(maxhot, callback){
+	getSongs(maxhot, function(songlist) {
 		async.forEach(songlist, function(item, next) {
 			songcardMaker(item, next);
 		}, function (err) {
@@ -31,9 +31,9 @@ exports.songcards = function(callback){
 
 // I also don't know how this is going to work once the players run out of songs. Whatever, moving on.
 
-function getSongs(callback) {
+function getSongs(maxhot, callback) {
 	echo.debug = true;
-	echo('song/search').get({results: 100, sort: 'song_hotttnesss-desc', bucket: ['tracks', 'id:rdio-US', 'song_hotttnesss']}, function (err, json) { // style: 'pop'
+	echo('song/search').get({results: 100, song_max_hotttnesss: maxhot, sort: 'song_hotttnesss-desc', bucket: ['tracks', 'id:rdio-US', 'song_hotttnesss']}, function (err, json) { // style: 'pop'
 		var songlist = [];
 		var dups = [];
 		for (var i=0; i<json.response.songs.length; i++) {

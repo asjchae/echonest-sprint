@@ -62,15 +62,22 @@ function getHand(songs, callback) {
 				callback(songs);
 			});
 		} else {
-			songs = response;
-			async.forEach(response, function(item, next) {
-				setFalse(item, next);
-			}, function (err) {
-				if (err) {
-					console.log("Error", err);
-				}
-				callback(songs);
-			});
+			if (response.length == 6) {
+				console.log(response.length);
+				songs = response;
+				async.forEach(response, function(item, next) {
+					setFalse(item, next);
+				}, function (err) {
+					if (err) {
+						console.log("Error", err);
+					}
+					callback(songs);
+				});				
+			} else {
+				getMore(function(songs) {
+					callback(songs);
+				});
+			}
 		}
 	});
 };
@@ -78,7 +85,7 @@ function getHand(songs, callback) {
 function getMore(callback) {
 	SongCard.findOne({}).sort('hotness').exec(function (err, response) {
 		if (!response) {
-			cards.songcards(function() {
+			cards.songcards(1, function() {
 				SongCard.find({inDeck: true}).limit(6).exec(function (err, response) {
 					if (err) {
 						console.log("Error getting song card", err);
@@ -96,8 +103,24 @@ function getMore(callback) {
 				});
 			});
 		} else {
-			console.log("something");
-			callback();
+			var max = response.hotness;
+			cards.songcards(max, function() {
+				SongCard.find({inDeck: true}).limit(6).exec(function (err, response) {
+					if (err) {
+						console.log("Error getting song card", err);
+					} else {
+						songs = response;
+						async.forEach(response, function(item, next) {
+							setFalse(item, next);
+						}, function (err) {
+							if (err) {
+								console.log("Error", err);
+							}
+							callback(songs);
+						});
+					}
+				});
+			});
 		}
 	});
 }

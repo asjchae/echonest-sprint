@@ -63,5 +63,7 @@ exports.deletedealercards = function(req, res) {
 exports.testrefresh = function(req, res) {
 	var del = Dealer.find({}).remove();
 	var cray = User.find({}).remove();
+	var meep = ThemeCard.find({}).remove();
+	var heh = SongCard.find({}).remove();
 	res.redirect('/');
 }

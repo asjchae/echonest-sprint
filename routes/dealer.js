@@ -11,7 +11,7 @@ var echojs = require('echojs')
 exports.dealerscreen = function(req, res) {
 	var theme;
 	Dealer.findOne({}).populate('theme').exec(function (err, response) {
-		theme = response.theme[0].theme
+		theme = response.theme[0].theme;
 		console.log(theme);
 		res.render('dealerviewfirst', {title: 'Express', theme: theme, songs: []});
 	});

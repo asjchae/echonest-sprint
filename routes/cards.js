@@ -40,11 +40,11 @@ function getSongs(maxhot, callback) {
 			if (json.response.songs[i].tracks.length == 0) {
 				continue;
 			}
-			if (json.response.songs[i].title.toString().split('(').length > 1) {
-				continue;
-			} else if (json.response.songs[i].title.toString().split(' ').length > 4) {
-				continue;
-			} else {
+			// if (json.response.songs[i].title.toString().split('(').length > 1) {
+			// 	continue;
+			// // } else if (json.response.songs[i].title.toString().split(' ').length > 4) {
+			// // 	continue;
+			// } else {
 				var hash = json.response.songs[i].artist_name + '|' + json.response.songs[i].title;
 				if (dups.indexOf(hash) == -1) {
 					dups.push(hash);
@@ -52,7 +52,7 @@ function getSongs(maxhot, callback) {
 				} else {
 					continue;
 				};				
-			}
+			// }
 		}
 		console.log(songlist[0].tracks);
 		callback(songlist);

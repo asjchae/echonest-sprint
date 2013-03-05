@@ -29,7 +29,8 @@ exports.dealersubmit = function(req, res) {
 };
 
 exports.getupdates = function(req, res) {
-
+	console.log("Hi ari!")
+	res.send("Hey guys!")
 	// send back ('gameviewdealerpartial', {title: 'Express', theme: , submitted_cards: };
 
 };

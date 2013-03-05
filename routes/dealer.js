@@ -5,7 +5,7 @@ var echojs = require('echojs')
 	, async = require('async')
 	, User = require('../models/user_schema')
 	, cards = require('../routes/cards');
-	
+
 // The screen the dealer sees to pick.
 exports.dealerscreen = function(req, res) {
 

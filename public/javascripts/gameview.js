@@ -16,7 +16,6 @@ $(function() {
           $("#gameview").remove()
           $("#page").append(data)
         });
-
     })
 
     $(".selectbutton").click(function(){

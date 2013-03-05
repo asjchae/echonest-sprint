@@ -173,6 +173,12 @@ exports.playersubmit = function(req, res) {
 					// omg
 				} else {
 					cardhand.push(response);
+					response.set({inDeck: false});
+					response.save(function (err) {
+						if (err) {
+							console.log("Error setting card as inDeck: false");
+						}
+					});
 					user.set({card_hand: cardhand});
 					user.save(function (err) {
 						if (err) {
@@ -182,8 +188,9 @@ exports.playersubmit = function(req, res) {
 								if (err) {
 									console.log("Error", err);
 								} else {
-									var hand = user.card_hand;
-									res.render('gameview', {title: 'Express', theme: "Happy", songs: hand});
+									var hand = response.card_hand;
+									console.log(hand);
+									res.render('gameviewpartial', {title: 'Express', theme: "Happy", songs: hand});
 								}
 							});
 						}
@@ -198,4 +205,4 @@ exports.playersubmit = function(req, res) {
 
 exports.dealersubmit = function(req, res) {
 	console.log("Dealer:" + req.body)
-};
+};	

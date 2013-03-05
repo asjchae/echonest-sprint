@@ -8,6 +8,8 @@ $(function() {
         $('#'+this.id).rdio('GAlNi78J_____zlyYWs5ZG02N2pkaHlhcWsyOWJtYjkyN2xvY2FsaG9zdEbwl7EHvbylWSWFWYMZwfc=');
     })
 
+    //actual token 'GB9RNVyF_____3RyYnR6czNqcnE0ejN5cWE2a3l4a3V3bmRyeS13b29kbGFuZC05NDgwLmhlcm9rdWFwcC5jb23SVXD5VVuhJReswyax9tJf')
+
     $(".submitbutton").click(function(){
         console.log(this.id);
         $.post("/playersubmit", {title: this.id});
@@ -49,6 +51,7 @@ $(function() {
   // // this is a valid playback token for localhost.
   // // but you should go get your own for your own domain.
   // $('#api').rdio('GAlNi78J_____zlyYWs5ZG02N2pkaHlhcWsyOWJtYjkyN2xvY2FsaG9zdEbwl7EHvbylWSWFWYMZwfc=');
+
 
   // $('#previous').click(function() { $('#api').rdio().previous(); });
   // $('#play').click(function() { $('#api').rdio().play(); });

@@ -29,8 +29,16 @@ exports.dealersubmit = function(req, res) {
 };
 
 exports.getupdates = function(req, res) {
+<<<<<<< Updated upstream
 	console.log("Hi ari!")
 	res.send("Hey guys!")
+=======
+	var submitted = [];
+	SongCard.findOne({}).exec(function (err, response) {
+		submitted.pop(response);
+		res.render('gameviewdealerpartial', {title: 'Express', theme: "meep", submitted_cards: submitted);
+	});
+>>>>>>> Stashed changes
 	// send back ('gameviewdealerpartial', {title: 'Express', theme: , submitted_cards: };
 
 };

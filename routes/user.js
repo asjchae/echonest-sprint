@@ -82,7 +82,7 @@ function login(req, res, user) {
 	if (user.is_dealer == false) {
 		return res.redirect('/play');
 	} else {
-		return res.redirect('/dealerscreen');
+		return res.redirect('/dealer');
 	}
 };
  

@@ -1,5 +1,6 @@
 //- script(src='/javascripts/gameview.js')
 script 
+  console.log("Hi")
   $(".selectbutton").click(function(){
     console.log(this.id);
     $.post("/dealersubmit", {title: this.id});  

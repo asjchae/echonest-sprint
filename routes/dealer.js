@@ -11,9 +11,17 @@ var echojs = require('echojs')
 exports.dealerscreen = function(req, res) {
 	var theme;
 	Dealer.findOne({}).populate('theme').exec(function (err, response) {
-		theme = response.theme[0].theme;
-		console.log(theme);
-		res.render('dealerviewfirst', {title: 'Express', theme: theme, songs: []});
+		if (response == null){
+			res.render('dealerviewfirst', {title: 'Express', theme: "Wait for it...", songs: []});	
+		} else{
+			if (response.theme[0].theme == null) {
+				theme = response.theme[0].theme;
+			} else {
+				theme = "Silly";
+			}
+			console.log(theme);
+			res.render('dealerviewfirst', {title: 'Express', theme: theme, songs: []});
+		}
 	});
 
 };

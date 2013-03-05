@@ -15,6 +15,7 @@ $(function() {
         $.post("/playersubmit", {title: this.id}, function(data) {
           $("#gameview").remove()
           $("#page").append(data)
+          clearInterval(x);
         });
     })
 

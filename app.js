@@ -52,7 +52,7 @@ app.get('/users', admin.allusers);
 // Game Play
 
 // app.get('/newround', gameplay.newround); // start a new round
-// app.get('/dealerscreen', gameplay.dealerscreen); // the screen the dealer sees to pick
+app.get('/dealer', gameplay.dealerscreen); // the screen the dealer sees to pick
 // app.get('/dealerwait', gameplay.dealerwait); // waiting screen for the dealer while players pick
 // app.get('/playerwait', gameplay.playerwait); // players wait for the dealer to choose
 // app.get('/roundfinish', gameplay.roundfinish);  // everyone sees the results

@@ -67,7 +67,7 @@ function getHand(songs, callback) {
 		if (err) {
 			console.log("Error getting song card", err);
 		} else if (!response) {
-			SongCard.findOne({}).sort('-hotness').exec(function (err, response) {
+			SongCard.findOne({}).sort('hotness').exec(function (err, response) {
 				console.log(response);
 			});
 		} else {

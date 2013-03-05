@@ -39,7 +39,9 @@ exports.dealersubmit = function(req, res) {
 exports.getupdates = function(req, res) {
 	Dealer.findOne({}).populate('submitted_cards').populate('theme').exec(function (err, response) {
 		submitted =[]
-		if (response != null){
+		if (response == null) {
+			return;
+		} else if (response != null){
 			var submitted = response.submitted_cards;
 		}
 

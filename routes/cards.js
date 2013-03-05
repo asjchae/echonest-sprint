@@ -21,7 +21,7 @@ exports.songcards = function(req, res){
 			if (err) {
 				console.log("Error", err);
 			}
-			res.redirect('/songcards');
+			return null;
 		});
 	});
 };

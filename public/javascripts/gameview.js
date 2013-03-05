@@ -4,6 +4,7 @@ $(function() {
         console.log(this.id);
         $('#'+this.id).bind('ready.rdio', function() {
             $(this).rdio().play(this.id);
+            console.log(this.val())
         });
         $('#'+this.id).rdio('GAlNi78J_____zlyYWs5ZG02N2pkaHlhcWsyOWJtYjkyN2xvY2FsaG9zdEbwl7EHvbylWSWFWYMZwfc=');
     })
@@ -29,9 +30,8 @@ $(function() {
     var start = new Date;
 
     var timer = function() {
-      console.log("here")
+
       var time = 30 - Math.floor((new Date - start) / 1000)
-      console.log(time)
       if (time==0){
         clearInterval(x);
         $.get("/roundfinish", function(data) {

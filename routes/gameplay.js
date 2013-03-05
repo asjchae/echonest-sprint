@@ -112,7 +112,7 @@ exports.start = function(req, res) {
 };
 
 exports.playersubmit = function(req, res) {
-
+	console.log(req.body)
 };
 
 exports.dealersubmit = function(req, res) {

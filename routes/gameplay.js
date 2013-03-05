@@ -112,9 +112,9 @@ exports.start = function(req, res) {
 };
 
 exports.playersubmit = function(req, res) {
-	console.log(req.body)
+	console.log("Player:" + req.body)
 };
 
 exports.dealersubmit = function(req, res) {
-
+	console.log("Dealer:" + req.body)
 };

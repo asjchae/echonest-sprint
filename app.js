@@ -61,7 +61,7 @@ app.get('/users', admin.allusers);
 
 // app.post('/start', gameplay.start);
 app.post('/playersubmit', gameplay.playersubmit);
-// app.post('/dealersubmit', gameplay.dealersubmit);
+app.post('/dealersubmit', gameplay.dealersubmit);
 
 
 // POST requests

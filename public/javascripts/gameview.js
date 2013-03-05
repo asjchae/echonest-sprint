@@ -10,8 +10,14 @@ $(function() {
 
     $(".submitbutton").click(function(){
         console.log(this.id);
-        $.post("/playersubmit", this.id);
-            
+        $.post("/playersubmit", {title: this.id});
+
+    })
+
+    $(".selectbutton").click(function(){
+        console.log(this.id);
+        $.post("/dealersubmit", {title: this.id});
+
     })
   })
 

@@ -8,14 +8,14 @@ $(function() {
           $('#'+this.id).bind('ready.rdio', function() {
               $(this).rdio().play(this.id);
           });
-          $('#'+this.id).rdio('GCFRNkX9_____3RyYnR6czNqcnE0ejN5cWE2a3l4a3V3bnNsZWVweS10aGlja2V0LTgyNjYuaGVyb2t1YXBwLmNvbW8PwtNOvx6qUrMnpxq4VT8=');
+          $('#'+this.id).rdio('GCRRNlGb_____3RyYnR6czNqcnE0ejN5cWE2a3l4a3V3bm9uZWZsZXdvdmVydGhlZWNob25lc3QuaGVyb2t1YXBwLmNvbW8b83sKdDmQZoPrHCq5xUA=');
         } else if ($('#'+this.id)[0].textContent == "Pause"){
           $('#'+this.id)[0].textContent = "Play"
           $('#'+this.id).rdio().pause()        
         }
     })
     // 'GAlNi78J_____zlyYWs5ZG02N2pkaHlhcWsyOWJtYjkyN2xvY2FsaG9zdEbwl7EHvbylWSWFWYMZwfc=' 
-    //actual token 'GCFRNkX9_____3RyYnR6czNqcnE0ejN5cWE2a3l4a3V3bnNsZWVweS10aGlja2V0LTgyNjYuaGVyb2t1YXBwLmNvbW8PwtNOvx6qUrMnpxq4VT8=''
+    //actual token 'GCRRNlGb_____3RyYnR6czNqcnE0ejN5cWE2a3l4a3V3bm9uZWZsZXdvdmVydGhlZWNob25lc3QuaGVyb2t1YXBwLmNvbW8b83sKdDmQZoPrHCq5xUA=''
 
     $(".submitbutton").click(function(){
         console.log(this.id);
